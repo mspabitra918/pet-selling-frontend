@@ -209,7 +209,6 @@ export default function CatPages() {
               setSelectedGenders([]);
               setSelectedAges([]);
               setSelectedPrices([]);
-              setSelectedSpecies([]);
               router.replace(pathname); // removes all query params
             }}
             className="w-full rounded-full border border-clay px-4 py-3 text-sm font-semibold uppercase tracking-[1px] text-clay transition hover:bg-clay hover:text-cream"
