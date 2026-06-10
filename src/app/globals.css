@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: var(--font-open-sans), "Open Sans", system-ui, sans-serif;
+  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+
+  /* Warm premium palette */
+  --color-cream: #fbf8f3;
+  --color-sand: #f3ead9;
+  --color-sand-dark: #e7d7bf;
+  --color-ink: #271f17;
+  --color-ink-soft: #6a5e51;
+  --color-clay: #bb5e3c;
+  --color-clay-dark: #9b4a2c;
+  --color-olive: #6f7d4f;
+  --color-olive-dark: #59673c;
+  --color-gold: #c79a5b;
+
+  /* Easing */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Reusable display heading helper */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+/* Subtle reveal animation used across home sections */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.7s var(--ease-soft) both;
+}
+
+/* Thin custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand-dark);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
