@@ -142,8 +142,8 @@ export function CheckoutClient() {
       phoneNumber,
       quantity: Number(quantity),
       purchasePriceUsd: (subTotal ?? 0) + (shippingCost ?? 0),
-      shippingMethod: shippingOption,
-      shippingCostUsd: shippingCost,
+      // shippingMethod: shippingOption,
+      // shippingCostUsd: shippingCost,
       petId,
     };
     setSubmitLoading(true);
