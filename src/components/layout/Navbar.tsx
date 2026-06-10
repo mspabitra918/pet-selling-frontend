@@ -55,76 +55,76 @@ export default function Navbar() {
 
   return (
     <>
-    <nav className="sticky top-0 z-50 border-b border-sand-dark/60 bg-cream/85 backdrop-blur-md overflow-x-hidden w-full">
-      <div className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between overflow-x-auto">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-clay text-cream">
-              <MdOutlinePets size={20} />
-            </span>
-            <span className="font-display text-2xl font-semibold tracking-tight text-ink">
-              PawVerse
-            </span>
-          </Link>
-
-          {/* Desktop Menu */}
-          <div className="hidden items-center gap-6 lg:gap-9 lg:flex flex-nowrap">
-            <Link
-              href="/"
-              className="text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:text-clay whitespace-nowrap"
-            >
-              Home
+      <nav className="sticky top-0 z-50 border-b border-sand-dark/60 bg-cream/85 backdrop-blur-md w-full">
+        <div className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex h-20 items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2.5">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-clay text-cream">
+                <MdOutlinePets size={20} />
+              </span>
+              <span className="font-display text-2xl font-semibold tracking-tight text-ink">
+                PawVerse
+              </span>
             </Link>
 
-            <div
-              className="relative"
-              onMouseEnter={() => setListOfPet(true)}
-              onMouseLeave={() => setListOfPet(false)}
-            >
-              <button
-                className="flex cursor-pointer items-center gap-1 text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:text-clay whitespace-nowrap"
-                onClick={() => setListOfPet((v) => !v)}
+            {/* Desktop Menu */}
+            <div className="hidden items-center gap-6 lg:gap-9 lg:flex flex-nowrap">
+              <Link
+                href="/"
+                className="text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:text-clay whitespace-nowrap"
               >
-                Browse Pets
-                {listOfPet ? (
-                  <MdOutlineKeyboardArrowUp />
-                ) : (
-                  <MdOutlineKeyboardArrowDown />
+                Home
+              </Link>
+
+              <div
+                className="relative"
+                onMouseEnter={() => setListOfPet(true)}
+                onMouseLeave={() => setListOfPet(false)}
+              >
+                <button
+                  className="flex cursor-pointer items-center gap-1 text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:text-clay whitespace-nowrap"
+                  onClick={() => setListOfPet((v) => !v)}
+                >
+                  Browse Pets
+                  {listOfPet ? (
+                    <MdOutlineKeyboardArrowUp />
+                  ) : (
+                    <MdOutlineKeyboardArrowDown />
+                  )}
+                </button>
+                {listOfPet && (
+                  <div className="absolute left-0 top-full w-48 overflow-hidden rounded-xl border border-sand-dark/60 bg-cream pt-2 shadow-xl shadow-ink/5">
+                    {petLinks.map((pet) => (
+                      <Link
+                        key={pet.href}
+                        href={pet.href}
+                        onClick={() => setListOfPet(false)}
+                        className="block px-5 py-2.5 text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:bg-sand hover:text-clay"
+                      >
+                        {pet.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              </button>
-              {listOfPet && (
-                <div className="absolute left-0 top-full w-48 overflow-hidden rounded-xl border border-sand-dark/60 bg-cream pt-2 shadow-xl shadow-ink/5">
-                  {petLinks.map((pet) => (
-                    <Link
-                      key={pet.href}
-                      href={pet.href}
-                      onClick={() => setListOfPet(false)}
-                      className="block px-5 py-2.5 text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:bg-sand hover:text-clay"
-                    >
-                      {pet.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              </div>
+
+              {navLinks
+                .filter((l) => l.label !== "Home")
+                .map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:text-clay whitespace-nowrap"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
             </div>
 
-            {navLinks
-              .filter((l) => l.label !== "Home")
-              .map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-[13px] font-medium uppercase tracking-[1.5px] text-ink transition hover:text-clay whitespace-nowrap"
-                >
-                  {link.label}
-                </Link>
-              ))}
-          </div>
-
-          {/* Right Side */}
-          {/* <div className="hidden items-center gap-4 lg:flex relative"> */}
-          {/* <button
+            {/* Right Side */}
+            {/* <div className="hidden items-center gap-4 lg:flex relative"> */}
+            {/* <button
               onClick={() => {
                 setOpenSearch(!openSearch);
               }}
@@ -139,7 +139,7 @@ export default function Navbar() {
             >
               List a Pet
             </Link> */}
-          {/* {openSearch && (
+            {/* {openSearch && (
               <div className="absolute right-0 top-full mt-2 w-[300px] rounded-xl border border-sand-dark/60 bg-cream p-4 shadow-xl shadow-ink/5">
                 <div className="flex items-center gap-3">
                   <FiSearch size={18} className="text-ink-soft" />
@@ -168,33 +168,32 @@ export default function Navbar() {
                 </div>
               </div>
             )} */}
-          {/* </div> */}
+            {/* </div> */}
 
-          {/* Mobile Menu Button */}
-          <button
-            className="text-ink lg:hidden"
-            aria-label="Open menu"
-            onClick={() => setOpenMenu(true)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            {/* Mobile Menu Button */}
+            <button
+              className="text-ink lg:hidden"
+              aria-label="Open menu"
+              onClick={() => setOpenMenu(true)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.8}
-                d="M4 7h16M4 12h16M4 17h16"
-              />
-            </svg>
-          </button>
-
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.8}
+                  d="M4 7h16M4 12h16M4 17h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
       {/* Mobile Drawer — rendered outside <nav> so backdrop-blur/overflow on the
           nav don't trap or clip this fixed element */}
