@@ -49,7 +49,11 @@ export default function Navbar() {
 
   // The public site chrome shouldn't render inside the admin panel or on the
   // login screen.
-  if (pathname?.startsWith("/admin") || pathname?.startsWith("/auth")) {
+  if (
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/auth") ||
+    pathname?.startsWith("/checkout")
+  ) {
     return null;
   }
 
@@ -281,13 +285,13 @@ export default function Navbar() {
                 ))}
             </ul>
 
-            <Link
+            {/* <Link
               href="/list-pet"
               onClick={() => setOpenMenu(false)}
               className="mt-6 rounded-full bg-clay py-3 text-center text-sm font-semibold uppercase tracking-[2px] text-cream transition hover:bg-clay-dark"
             >
               List a Pet
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

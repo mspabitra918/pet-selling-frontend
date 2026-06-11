@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import PetsPagesClient from "./browse-pets-client";
+import BrowsePetsSkeleton from "@/src/components/ui/BrowsePetsSkeleton";
 
 export const metadata = {
   title: "Browse Birds - Premium Pet Selling Platform",
@@ -8,9 +9,7 @@ export const metadata = {
 
 export default function BrowsePage() {
   return (
-    <Suspense
-      fallback={<div className="container mx-auto px-4 py-12">Loading...</div>}
-    >
+    <Suspense fallback={<BrowsePetsSkeleton />}>
       <PetsPagesClient />
     </Suspense>
   );

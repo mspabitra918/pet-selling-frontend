@@ -4,6 +4,7 @@ import { useApi } from "@/src/lib/api";
 import { canadaRegions, Pet, usStates, formatPrice } from "@/src/lib/data";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -26,6 +27,7 @@ export function CheckoutClient() {
 
   const [isSubmitLoading, setSubmitLoading] = useState(false);
   const [isSubmitSuccess, setSubmitSuccess] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -148,8 +150,15 @@ export function CheckoutClient() {
     };
     setSubmitLoading(true);
     try {
-      await api.post(`/pet-purchases`, payload);
+      const { data } = await api.post<{ id: string }>(
+        `/pet-purchases`,
+        payload,
+      );
+      setOrderId(data.id);
       setSubmitSuccess(true);
+      // setTimeout(() => {
+      //   route.push("/browse-pets");
+      // }, 4000);
     } catch (error) {
       console.error(error);
     } finally {
@@ -161,7 +170,9 @@ export function CheckoutClient() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-clay py-4 md:py-8 text-center">
-        <h1 className="text-2xl md:text-4xl font-bold text-white">PawVerse</h1>
+        <Link href={"/"} className="text-2xl md:text-4xl font-bold text-white">
+          PawVerse
+        </Link>
       </div>
 
       {isSubmitSuccess && (
@@ -191,7 +202,9 @@ export function CheckoutClient() {
           </p>
           <p className="text-sm text-gray-500">
             Order ID:{" "}
-            <span className="font-mono font-semibold text-ink">{petId}</span>
+            <span className="font-mono font-semibold text-ink">
+              {orderId ?? petId ?? "N/A"}
+            </span>
           </p>
         </div>
       )}
@@ -498,9 +511,9 @@ export function CheckoutClient() {
               </div>
             </div>
 
-            <hr className="mb-6" />
+            {/* <hr className="mb-6" /> */}
 
-            <div className="flex gap-3 mb-8">
+            {/* <div className="flex gap-3 mb-8">
               <input
                 type="text"
                 placeholder="Coupon code"
@@ -508,7 +521,7 @@ export function CheckoutClient() {
               />
 
               <button className="text-clay font-medium">APPLY</button>
-            </div>
+            </div> */}
 
             <hr className="mb-6" />
 
