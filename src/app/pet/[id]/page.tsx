@@ -48,7 +48,7 @@ export default function PetDetailsPage() {
 
   return (
     <>
-      <div className="max-w-5xl mx-auto py-6">
+      <div className="max-w-5xl mx-auto py-6 px-5 lg:px-0">
         <button
           className="text-clay font-medium flex items-center gap-1 mb-4 cursor-pointer hover:text-clay-dark transition"
           onClick={() => window.history.back()}
@@ -60,7 +60,7 @@ export default function PetDetailsPage() {
           <div>
             <div>
               <img
-                className="h-[600px] w-[500px]"
+                className="h-[400px] w-[500px] md:h-[600px] md:w-[500px]"
                 src={selectedImage || pet.image}
                 alt={pet.name}
               />
